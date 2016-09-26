@@ -1,12 +1,4 @@
 {
   "name": "exercise1",
-  "app_id": "",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
+  "app_id": ""
 }

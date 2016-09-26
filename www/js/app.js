@@ -5,12 +5,21 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'jett.ionic.filter.bar', 'starter.controllers',
-'starter.services'])
+// app.js
+angular.module('starter', ['ionic', 'ngCordova', 'firebase', 'chart.js', 'jett.ionic.filter.bar', 'starter.controllers', 'starter.services'])
 
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+
+     var config = {
+    apiKey: "AIzaSyBnAtAsQwwP6qqhdpbfHn4wNj8QFZWc77E",
+    authDomain: "exercise-1-1ab4a.firebaseapp.com",
+    databaseURL: "https://exercise-1-1ab4a.firebaseio.com",
+    storageBucket: "exercise-1-1ab4a.appspot.com",
+    messagingSenderId: "14506711281"
+  };
+  firebase.initializeApp(config);
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -33,8 +42,17 @@ angular.module('starter', ['ionic', 'jett.ionic.filter.bar', 'starter.controller
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+
+.state('login', {
+url: '/login',
+templateUrl: 'templates/login.html',
+controller: 'LoginCtrl'
+})
+// the fallback function below should be added at the end of the state definion
+
+
   // setup an abstract state for the tabs directive
-    .state('tab', {
+.state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -61,18 +79,16 @@ angular.module('starter', ['ionic', 'jett.ionic.filter.bar', 'starter.controller
         }
       }
     })
-
-.state('tab.add', {
-url: '/add',
-views: {
-'tab-foods': {
-templateUrl: 'templates/tab-add.html',
-controller: 'AddCtrl'
-}
-}
-})
-
-
+    .state('tab.add', {
+      url: '/add',
+      views: {
+        'tab-foods': {
+          templateUrl: 'templates/tab-add.html',
+          controller: 'AddCtrl'
+        }
+      }
+    })
+    
     .state('tab.food-detail', {
       url: '/foods/:foodId',
       views: {
@@ -94,6 +110,7 @@ controller: 'AddCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/login');
+  
 
 });
