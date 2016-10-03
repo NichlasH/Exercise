@@ -1,5 +1,9 @@
 angular.module('starter.services', [])
 
+.factory('Auth', function(){
+return firebase.auth();
+})
+
 .factory('Foods', function($firebaseArray) {
 var foods = $firebaseArray(firebase.database().ref('foods'));
 var diaries = $firebaseArray(firebase.database().ref('diaries'));
@@ -61,9 +65,7 @@ var diaries = $firebaseArray(firebase.database().ref('diaries'));
     date: '2016-09-12T17:20:00'
   }];
 
-factory('Auth', function(){
-return firebase.auth();
-})
+
 
 
   function compare(a,b) {
