@@ -13,13 +13,12 @@ angular.module('starter.controllers', [])
         $scope.plotData =
           Foods.getPlotData(diariesArray);
       });
-    // $scope.refreshDiaries = function () {
-    // $timeout(function () {
-    // $scope.plotData = Foods.getPlotData();
-    //
-    $scope.$broadcast('scroll.refreshComplete');
-    // }, 1000);
-    // };
+   // $scope.refreshDiaries = function () {
+     // $timeout(function () {
+       // $scope.plotData = Foods.getPlotData();
+        //$scope.$broadcast('scroll.refreshComplete');
+      //}, 1000);
+   // };
   })
 
   .controller('FoodsCtrl', function ($scope, $state, $timeout, $ionicFilterBar, $ionicPopup, Foods) {
