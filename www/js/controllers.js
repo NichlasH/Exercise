@@ -13,12 +13,12 @@ angular.module('starter.controllers', [])
         $scope.plotData =
           Foods.getPlotData(diariesArray);
       });
-   // $scope.refreshDiaries = function () {
-     // $timeout(function () {
-       // $scope.plotData = Foods.getPlotData();
-        //$scope.$broadcast('scroll.refreshComplete');
-      //}, 1000);
-   // };
+    // $scope.refreshDiaries = function () {
+    // $timeout(function () {
+    // $scope.plotData = Foods.getPlotData();
+    //$scope.$broadcast('scroll.refreshComplete');
+    //}, 1000);
+    // };
   })
 
   .controller('FoodsCtrl', function ($scope, $state, $timeout, $ionicFilterBar, $ionicPopup, Foods) {
@@ -30,6 +30,8 @@ angular.module('starter.controllers', [])
     //$scope.$on('$ionicView.enter', function(e) {
     //});
     var filterBarInstance;
+
+
 
     $scope.showFilterBar = function () {
       filterBarInstance = $ionicFilterBar.show({
@@ -45,17 +47,6 @@ angular.module('starter.controllers', [])
     $scope.add = function (view) {
       $state.go(view);
     }
-    $scope.refreshFoods = function () {
-      if (filterBarInstance) {
-        filterBarInstance();
-        filterBarInstance = null;
-      }
-
-      $timeout(function () {
-        $scope.foods = Foods.all();
-        $scope.$broadcast('scroll.refreshComplete');
-      }, 1000);
-    };
     $scope.showPopup = function (food) {
       $scope.newDiary = {
         id: $scope.diaries.length,
@@ -67,6 +58,20 @@ angular.module('starter.controllers', [])
           img: food.img
         }
       };
+
+      $scope.refreshFoods = function () {
+        if (filterBarInstance) {
+          filterBarInstance();
+          filterBarInstance = null;
+        }
+
+        $timeout(function () {
+          $scope.foods = Foods.all();
+          $scope.$broadcast('scroll.refreshComplete');
+        }, 1000);
+      };
+
+
       $scope.data = {};
       // An elaborate, custom popup
       var myPopup = $ionicPopup.show({

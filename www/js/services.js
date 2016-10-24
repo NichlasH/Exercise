@@ -58,12 +58,15 @@ angular.module('starter.services', [])
 
 
     return {
-      aadd: function (newFood) {
+      add: function (newFood) {
         var updates = {};
         var newId =
           firebase.database().ref().child('foods').push().key;
-        updates['/foods/' + newId] = food;
+        updates['/foods/' + newId] = newFood;
         firebase.database().ref().update(updates);
+      },
+      all: function() {
+        return foods;
       },
       remove: function (food) {
         firebase.database().ref('foods/' + food.$id).remove();
