@@ -1,8 +1,8 @@
 angular.module('starter.controllers', [])
 
-  .controller('DashCtrl', function ($scope, $timeout,
-    Foods) {
-    // $scope.plotData = Foods.getPlotData();
+  .controller('InstituteCtrl', function ($scope, $timeout,
+    Courses) {
+    // $scope.plotData = Courses.getPlotData();
     firebase.database().ref('diaries').on('value',
       function (snapshot) {
         var tmp = snapshot.val();
@@ -11,17 +11,17 @@ angular.module('starter.controllers', [])
           diariesArray.push(tmp[i]);
         }
         $scope.plotData =
-          Foods.getPlotData(diariesArray);
+          Courses.getPlotData(diariesArray);
       });
     // $scope.refreshDiaries = function () {
     // $timeout(function () {
-    // $scope.plotData = Foods.getPlotData();
+    // $scope.plotData = Courses.getPlotData();
     //$scope.$broadcast('scroll.refreshComplete');
     //}, 1000);
     // };
   })
 
-  .controller('FoodsCtrl', function ($scope, $state, $timeout, $ionicFilterBar, $ionicPopup, Foods) {
+  .controller('CoursesCtrl', function ($scope, $state, $timeout, $ionicFilterBar, $ionicPopup, Courses) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -35,9 +35,9 @@ angular.module('starter.controllers', [])
 
     $scope.showFilterBar = function () {
       filterBarInstance = $ionicFilterBar.show({
-        items: $scope.foods,
+        items: $scope.courses,
         update: function (filteredItems, filterText) {
-          $scope.foods = filteredItems;
+          $scope.courses = filteredItems;
           if (filterText) {
             console.log(filterText);
           }
@@ -59,14 +59,14 @@ angular.module('starter.controllers', [])
         }
       };
 
-      $scope.refreshFoods = function () {
+      $scope.refreshCourses = function () {
         if (filterBarInstance) {
           filterBarInstance();
           filterBarInstance = null;
         }
 
         $timeout(function () {
-          $scope.foods = Foods.all();
+          $scope.courses = Courses.all();
           $scope.$broadcast('scroll.refreshComplete');
         }, 1000);
       };
@@ -75,7 +75,7 @@ angular.module('starter.controllers', [])
       $scope.data = {};
       // An elaborate, custom popup
       var myPopup = $ionicPopup.show({
-        templateUrl: 'templates/foods-popup.html',
+        templateUrl: 'templates/courses-popup.html',
         title: 'Make a Calories Diary',
         subTitle: 'How Many Ozs and When did you eat ' + food.name,
         scope: $scope,
@@ -98,7 +98,7 @@ angular.module('starter.controllers', [])
 
                 $scope.newDiary.amount = $scope.data.amount;
                 $scope.newDiary.date = datetime;
-                Foods.addDiary($scope.newDiary);
+                Courses.addDiary($scope.newDiary);
                 return $scope.data;
               }
             }
@@ -107,16 +107,16 @@ angular.module('starter.controllers', [])
       });
     }
 
-    $scope.foods = Foods.all();
+    $scope.courses = Courses.all();
     $scope.remove = function (food) {
-      Foods.remove(food);
+      Courses.remove(food);
     };
   })
 
-  .controller('AddCtrl', function ($scope, $state, $cordovaCamera, Foods) {
-    $scope.foods = Foods.all();
+  .controller('AddCtrl', function ($scope, $state, $cordovaCamera, Courses) {
+    $scope.courses = Courses.all();
     $scope.newFood = {
-      id: $scope.foods.length,
+      id: $scope.courses.length,
       name: '',
       lastText: '',
       face: ''
@@ -144,16 +144,16 @@ angular.module('starter.controllers', [])
     };
 
     $scope.confirm = function () {
-      Foods.add($scope.newFood);
+      Courses.add($scope.newFood);
       $scope.close();
     };
     $scope.close = function () {
-      $state.go('tab.foods');
+      $state.go('tab.courses');
     };
   })
 
-  .controller('FoodDetailCtrl', function ($scope, $stateParams, Foods) {
-    $scope.food = Foods.get($stateParams.foodId);
+  .controller('FoodDetailCtrl', function ($scope, $stateParams, Courses) {
+    $scope.food = Courses.get($stateParams.foodId);
   })
 
   .controller('LoginCtrl', function ($scope, $state,
@@ -163,8 +163,7 @@ angular.module('starter.controllers', [])
       Auth.signInWithEmailAndPassword($scope.data.email,
         $scope.data.password)
         .then(function (authData) {
-          console.log(authData);
-          $state.go('tab.dash');
+          $state.go('tab.institute');
         }).catch(function (error) {
           console.log(error);
           var alertPopup = $ionicPopup.alert({
@@ -175,7 +174,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('AccountCtrl', function ($scope) {
+  .controller('TeachersCtrl', function ($scope) {
     $scope.settings = {
       enableFriends: true
     };

@@ -1,0 +1,34 @@
+<ion-view view-title="Add Course/Teacher">
+
+    <ion-content>
+
+
+
+        <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+            <span class="input-label">Institute: </span>
+            <select ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+    <option>Copenhagen Business School</option>
+    <option>37</option>
+    <option>38</option>
+    <option>39</option>
+    <option>40</option>
+</select>
+            </label>
+
+            <label class="item item-input item-floating-label">
+            <span class="input-label">Teacher: </span>
+            <input type="text" placeholder="Teacher Name" ng-model="newTeacher.name">
+            </label>
+            <label class="item item-input item-floating-label">
+            <span class="input-label">Course: </span>
+            <input type="Text" placeholder="Course Name" Course" ng-model="newCourse.name">
+            </label>
+            <ion-nav-buttons side="primary">
+      <button class="button" ng-click="UpdateDB">
+        Add
+      </button>
+
+        </div>
+    </ion-content>
+</ion-view>

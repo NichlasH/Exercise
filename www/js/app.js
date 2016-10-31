@@ -60,29 +60,29 @@ controller: 'LoginCtrl'
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.institute', {
+    url: '/institute',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-institute': {
+        templateUrl: 'templates/tab-institute.html',
+        controller: 'InstituteCtrl'
       }
     }
   })
 
-  .state('tab.foods', {
-      url: '/foods',
+  .state('tab.courses', {
+      url: '/courses',
       views: {
-        'tab-foods': {
-          templateUrl: 'templates/tab-foods.html',
-          controller: 'FoodsCtrl'
+        'tab-courses': {
+          templateUrl: 'templates/tab-courses.html',
+          controller: 'CoursesCtrl'
         }
       }
     })
     .state('tab.add', {
       url: '/add',
       views: {
-        'tab-foods': {
+        'tab-courses': {
           templateUrl: 'templates/tab-add.html',
           controller: 'AddCtrl'
         }
@@ -90,21 +90,21 @@ controller: 'LoginCtrl'
     })
     
     .state('tab.food-detail', {
-      url: '/foods/:foodId',
+      url: '/courses/:foodId',
       views: {
-        'tab-foods': {
+        'tab-courses': {
           templateUrl: 'templates/food-detail.html',
           controller: 'FoodDetailCtrl'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.teachers', {
+    url: '/teachers',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-teachers': {
+        templateUrl: 'templates/tab-teachers.html',
+        controller: 'TeachersCtrl'
       }
     }
   });
