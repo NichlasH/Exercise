@@ -6,18 +6,11 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="food in foods" type="item-text-wrap" href="#/tab/foods/{{food.id}}">
-        <img ng-src="{{food.img}}">
-        <h2>{{food.name}}</h2>
-        <p>{{food.calories}} Calories per oz</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="teacher in teachers" type="item-text-wrap" href="#/tab/teachers/{{Id}}">
+        <img ng-src="{{img}}">
+        <h2>{{courses.name}}</h2>
+        <p>{{name}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(food)">
-          Delete
-        </ion-option-button>
-        <ion-option-button class="icon-left ion-fork button-energized" ng-click="showPopup(food)">
-          Eat
-        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
