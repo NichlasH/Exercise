@@ -6,10 +6,9 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="teacher in teachers" type="item-text-wrap" href="#/tab/teachers/{{Id}}">
-        <img ng-src="{{img}}">
-        <h2>{{courses.name}}</h2>
-        <p>{{name}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="teacher in teachers" type="item-text-wrap" ng-click="click({{teacher}})">
+        <img ng-src="{{teacher.img}}">
+        <h2 id="line">{{teacher.name}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

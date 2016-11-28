@@ -12,14 +12,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'firebase', 'chart.js', 'jett.i
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
 
-     var config = {
-    apiKey: "AIzaSyBnAtAsQwwP6qqhdpbfHn4wNj8QFZWc77E",
-    authDomain: "exercise-1-1ab4a.firebaseapp.com",
-    databaseURL: "https://exercise-1-1ab4a.firebaseio.com",
-    storageBucket: "exercise-1-1ab4a.appspot.com",
-    messagingSenderId: "14506711281"
-  };
-  firebase.initializeApp(config);
+    
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -89,12 +82,12 @@ controller: 'LoginCtrl'
       }
     })
     
-    .state('tab.food-detail', {
-      url: '/courses/:foodId',
+    .state('tab.teacher-detail', {
+      url: '/teachers/:id',
       views: {
-        'tab-courses': {
-          templateUrl: 'templates/food-detail.html',
-          controller: 'FoodDetailCtrl'
+        'tab-teachers': {
+          templateUrl: 'templates/teacher-detail.html',
+          controller: 'TeacherDetailCtrl'
         }
       }
     })

@@ -1,18 +1,8 @@
 angular.module('starter.controllers', [])
 
-  .controller('InstituteCtrl', function ($scope, $timeout,
-    Courses) {
+  .controller('InstituteCtrl', function ($scope, $timeout) {
     // $scope.plotData = Courses.getPlotData();
-    firebase.database().ref('diaries').on('value',
-      function (snapshot) {
-        var tmp = snapshot.val();
-        var diariesArray = [];
-        for (var i in tmp) {
-          diariesArray.push(tmp[i]);
-        }
-        $scope.plotData =
-          Courses.getPlotData(diariesArray);
-      });
+
     // $scope.refreshDiaries = function () {
     // $timeout(function () {
     // $scope.plotData = Courses.getPlotData();
@@ -21,7 +11,7 @@ angular.module('starter.controllers', [])
     // };
   })
 
-  .controller('CoursesCtrl', function ($scope, $state, $timeout, $ionicFilterBar, $ionicPopup, Courses) {
+  .controller('CoursesCtrl', function ($scope, $state, $timeout, $ionicFilterBar, $ionicPopup) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -49,13 +39,11 @@ angular.module('starter.controllers', [])
     }
     $scope.showPopup = function (food) {
       $scope.newDiary = {
-        id: $scope.diaries.length,
-        food: {
-          id: food.$id,
-          cat: food.cat,
-          calories: food.calories,
-          name: food.name,
-          img: food.img
+        id: $scope.Teachers.length,
+        teahcer: {
+          id: Teachers.$id,
+          name: Teachers.name,
+          img: Teachers.img
         }
       };
 
@@ -107,10 +95,7 @@ angular.module('starter.controllers', [])
       });
     }
 
-    $scope.courses = Courses.all();
-    $scope.remove = function (food) {
-      Courses.remove(food);
-    };
+
   })
 
   .controller('AddCtrl', function ($scope, $state, $cordovaCamera, Courses) {
@@ -120,41 +105,31 @@ angular.module('starter.controllers', [])
       name: '',
       lastText: '',
       face: ''
-    }
-
-    $scope.takePhoto = function () {
-      var options = {
-        quality: 75,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 300,
-        targetHeight: 300,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
-      };
-
-      $cordovaCamera.getPicture(options).then(function (imageData) {
-        $scope.imgURI = "data:image/jpeg;base64," + imageData;
-        $scope.newFood.face = $scope.imgURI;
-      }, function (err) {
-        // An error occured. Show a message to the user
-      });
     };
 
     $scope.confirm = function () {
       Courses.add($scope.newFood);
       $scope.close();
     };
+
     $scope.close = function () {
       $state.go('tab.courses');
     };
   })
 
-  .controller('FoodDetailCtrl', function ($scope, $stateParams, Courses) {
-    $scope.food = Courses.get($stateParams.foodId);
+  .controller('TeacherDetailCtrl', function ($scope, $state, $stateParams, Teachers) {
+ $scope.$on('$ionicView.enter', function(e) {
+   $scope.detail = Teachers.getdetail();
+   console.log($scope.detail)
+
+    
+  
+   
+ })
+    
   })
+
+ 
 
   .controller('LoginCtrl', function ($scope, $state,
     $ionicPopup, Auth) {
@@ -174,8 +149,12 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('TeachersCtrl', function ($scope) {
-    $scope.settings = {
-      enableFriends: true
-    };
+  .controller('TeachersCtrl', function ($scope, $rootScope, Auth, $state, Teachers) {
+    $scope.teachers = Teachers.all();
+    
+    
+    $scope.click = function(teacher) {
+      Teachers.setdetail(teacher);
+      $state.go('tab.teacher-detail')
+    }
   });

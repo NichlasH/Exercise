@@ -1,1 +1,15 @@
-/* Empty. Add your own CSS if you like */
+.detailpicture {
+      display: block;
+    margin: 0 auto;
+    width: 125px; 
+    height: 125px;
+}
+
+.teacherrating {
+text-align: center;
+}
+
+#line {
+  margin-top: 1%;
+
+}
